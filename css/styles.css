@@ -5,7 +5,7 @@ body {
     color: white;
 }
 
-#logo {
+#main-logo {
     font-size: 70px;
     text-align: center;
     padding: 0px;
@@ -24,7 +24,7 @@ body {
   100% { border-color: #28eeee; }
 }
 
-#welcome {
+#main-welcome {
     background-color: rgb(200, 20, 100);
     color: white;
     font-family: "candara";
