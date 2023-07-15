@@ -10,17 +10,25 @@
 <body>
     <header></header>
     <main>
+        <div id="logo">HangmanZ</div>
         <div id="welcome" onclick="startGame()">PLAY</div>
         <div id="main-game">
-            <div id="game-header">test header</div>
-            <div id="game-figure">0</div>
-            <div id="game-giveup" onclick="giveUp()">Give up</div>
-            <div id="game-info">Wrong letters: </div>
-            <button id="input" onclick="getInput()">Start</button>
-            <div id="game-attempts">a       
-            </div>
+            <div id="game-header" class="game-section">test header</div>
+            <div id="game-figure" class="game-section">0</div>
+            <div id="game-giveup" class="game-section" onclick="giveUp()">Give up</div>
+            <div id="game-info" class="game-section">Wrong letters: </div>
+            <button id="input" class="game-section" onclick="getInput()">Start</button>
+            <div id="game-attempts" class="game-section"></div>
         </div>
     </main>
-    <footer></footer>
+    <footer>
+        <div>(C) 2023 - HangmanZ</div>
+        <div id="contact-icons"></div>
+        <div id="terms">
+            <div>Terms of use</div>
+            <div>Privacy policy</div>
+        </div>
+        <div>Made with love by lucon</div>
+    </footer>
 </body>
 </html>

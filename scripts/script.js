@@ -1,5 +1,6 @@
 function startGame() {
     // Activates the game after clicking on "Play"
+    document.getElementById("logo").style.cssText = "display: none";
     document.getElementById("welcome").style.cssText = "display: none";
     document.getElementById("main-game").style.cssText = "display: grid";
 };
