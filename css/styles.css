@@ -39,12 +39,12 @@ body {
     animation: color-border 2s infinite linear;
 }
 
-#welcome:hover {
+#main-welcome:hover {
     background-color: rgb(180, 0, 70);
     cursor: pointer;
 }
 
-#welcome:active {
+#main-welcome:active {
     box-shadow: 5px 5px rgb(20, 20, 20, 0.7);
 }
 
@@ -120,4 +120,14 @@ footer {
     height: 15%;
     left: 0%; /*along with right: 0%, to prevent overflowing */
     right: 0%;
+}
+
+.class-terms {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.class-terms:hover {
+    color: rgb(180, 180,180);
 }

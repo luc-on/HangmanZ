@@ -5,6 +5,34 @@ function startGame() {
     document.getElementById("main-game").style.cssText = "display: grid";
 };
 
+function testy(event, word_to_guess, raw_answer, score, wrongs) {
+    var name = event.key.toString().toLowerCase();
+    var abc = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    if (word_to_guess.includes(name)) {
+        for (i = 0; i<word_to_guess.length; i++) {
+            if (word_to_guess[i] == name) {
+                raw_answer[i] = name;
+            }
+        };
+        displayAnswer(raw_answer);
+        if (raw_answer.join("") == word_to_guess) {
+            document.getElementById("game-header").innerHTML = "You won!";
+            terminateEvent();
+        }
+    } else if (abc.includes(name) && !(wrongs.includes(name))) {
+        wrongs.push(name);
+        addMistake(wrongs);
+        score.innerHTML++;
+        if (score.innerHTML == 7) {
+            score.innerHTML = "Game Over. You lost."
+        };
+    } else if (wrongs.includes(name)) {
+        document.getElementById("game-header").innerHTML = "Try another letter!"
+    } else {
+        document.getElementById("game-header").innerHTML = "Only letters, please!"
+    }
+  }
+
 function getInput() {
     // Starts level after clicking on "Start"
     var word_to_guess = wordGenerator();
@@ -12,33 +40,12 @@ function getInput() {
     displayAnswer(raw_answer);
     var score = document.getElementById("game-figure");
     var wrongs = [];
-    document.addEventListener('keydown', (event) => {
-        var name = event.key.toString().toLowerCase();
-        var abc = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-        if (word_to_guess.includes(name)) {
-            for (i = 0; i<word_to_guess.length; i++) {
-                if (word_to_guess[i] == name) {
-                    raw_answer[i] = name;
-                }
-            };
-            displayAnswer(raw_answer);
-            if (raw_answer.join("") == word_to_guess) {
-                document.getElementById("game-header").innerHTML = "You won!"
-            }
-        } else if (abc.includes(name) && !(wrongs.includes(name))) {
-            wrongs.push(name);
-            addMistake(wrongs);
-            score.innerHTML++;
-            if (score.innerHTML == 7) {
-                score.innerHTML = "Game Over. You lost."
-            };
-        } else if (wrongs.includes(name)) {
-            document.getElementById("game-header").innerHTML = "Try another letter!"
-        } else {
-            document.getElementById("game-header").innerHTML = "Only letters, please!"
-        }
-      }, false);
+    document.addEventListener('keydown', testy('keydown', word_to_guess, raw_answer, score, wrongs), false);
     // removeEventListener
+}
+
+function terminateEvent() {
+    // document.removeEventListener('keydown', )
 }
 
 function addMistake(list) {
