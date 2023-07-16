@@ -10,14 +10,33 @@
 <body>
     <header></header>
     <main>
+        <div id="main-language">
+            <span id="language-es" class="language-option">es</span>
+            <span>|</span>
+            <span id="language-fr" class="language-option">fr</span>
+        </div>
         <div id="main-logo">HangmanZ</div>
         <div id="main-welcome" onclick="startGame()">PLAY</div>
         <div id="main-game">
-            <div id="game-header" class="game-section">test header</div>
+            <div id="game-header" class="game-section">
+                <span>Level</span>
+                <span id="game-level" class="game-parameter">1</span>
+                <span>Lives</span>
+                <span id="game-lives" class="game-parameter">3</span>
+                <span>Points</span>
+                <span id="game-points" class="game-parameter">0</span>
+                <span>Category</span>
+                <span id="game-category" class="game-parameter">Default</span>
+                <span id="game-settings">⚙</span>
+            </div>
             <div id="game-figure" class="game-section">0</div>
-            <div id="game-giveup" class="game-section" onclick="giveUp()">Give up</div>
-            <div id="game-info" class="game-section">Wrong letters: </div>
-            <button id="input" class="game-section" onclick="getInput()">Start</button>
+            <div id="game-giveup" class="game-section game-option">Give up</div>
+            <div id="game-hint" class="game-section game-option">Hint</div>
+            <div id="game-info" class="game-section">
+                <div>Wrong letters: </div>
+                <div id="game-wrongs"></div>
+                <span id="game-header-status"></span>
+            </div>
             <div id="game-attempts" class="game-section"></div>
         </div>
     </main>

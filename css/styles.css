@@ -5,6 +5,19 @@ body {
     color: white;
 }
 
+.language-option {
+    color: rgb(180, 180, 180);
+    cursor: pointer;
+}
+
+.language-option:hover {
+    color: white;
+}
+
+.language-option:active {
+    color: rgb(180, 180, 180)
+}
+
 #main-logo {
     font-size: 70px;
     text-align: center;
@@ -45,22 +58,24 @@ body {
 }
 
 #main-welcome:active {
+    background-color: rgb(200, 20, 100);
     box-shadow: 5px 5px rgb(20, 20, 20, 0.7);
 }
 
 #main-game {
     display: none;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    background-color: rgb(90, 90, 90);
+    grid-template-rows: 15% 1fr 30% 15%;
+    background-color: rgb(90, 90, 90, 0.0); /* transparent */
     border-radius: 5px;
     width: 50%;
     margin-top: 5%;
     height: 400px;
+    border: solid white 1px;
 }
 
 .game-section {
-    margin: 6px;
+    margin: 0px;
     padding: 6px;
     display: flex;
     justify-content: center;
@@ -69,42 +84,79 @@ body {
 }
 
 #game-header {
-    background-color: orange;
+    background-color: rgb(0,0,0,0.5);
     grid-column: 1 / 4;
     grid-row: 1 / 2;
-    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#game-header-status {
+    color: rgb(200, 20, 100);
+}
+
+.game-parameter {
+    color: rgb(180, 180, 180);
+}
+
+#game-settings {
+    cursor: pointer;
+    text-align: right;
+    flex: end;
+}
+
+#game-settings:hover {
+    color: rgb(180, 180, 180)
+}
+
+#game-settings:active {
+    color: white;
 }
 
 #game-figure {
-    background-color: violet;
+    background-color: white;
     text-align: center;
     grid-column: 1 / 2;
     grid-row: 2 / 3;
     color: red;
+    border: solid black 3px;
     
 }
 
 #game-info {
-    background-color: blue;
+    background-color: rgb(0,0,0,0.5);
     grid-column: 2 / 4;
     grid-row: 2 / 3;
     
 }
 
 #game-attempts {
-    background-color: aqua;
+    background-color: rgb(0,0,0,0.3);
     grid-column: 1 / 4;
     grid-row: 3 / 4;
     text-align: center;
     font-size: 40px;
 }
-#input {
+#game-start {
+    background-color: rgb(20, 20, 20);
+    color: white;
     cursor: pointer;
 }
 
-#game-giveup {
-    background-color: green;
-    
+.game-option {
+    background-color: rgb(20, 20, 20);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.game-option:hover {
+    background-color: rgb(40, 40, 40);
+}
+
+.game-option:active {
+    background-color: rgb(20, 20, 20);
 }
 
 footer {
