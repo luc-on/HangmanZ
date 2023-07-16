@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="scripts/script.js"></script>
 </head>
-<body>
+<body id="the-body">
     <header></header>
     <main>
         <div id="main-language">
@@ -19,15 +19,19 @@
         <div id="main-welcome" onclick="startGame()">PLAY</div>
         <div id="main-game">
             <div id="game-header" class="game-section">
-                <span>Level</span>
-                <span id="game-level" class="game-parameter">1</span>
-                <span>Lives</span>
-                <span id="game-lives" class="game-parameter">3</span>
-                <span>Points</span>
-                <span id="game-points" class="game-parameter">0</span>
-                <span>Category</span>
-                <span id="game-category" class="game-parameter">Default</span>
-                <span id="game-settings">⚙</span>
+                <div> <!-- Container made so that settings is on the right -->
+                    <span>Level</span>
+                    <span id="game-level" class="game-parameter">1</span>
+                    <span>Lives</span>
+                    <span id="game-lives" class="game-parameter">3</span>
+                    <span>Points</span>
+                    <span id="game-points" class="game-parameter">0</span>
+                    <span>Category</span>
+                    <span id="game-category" class="game-parameter">Default</span>
+                </div>
+                <div>
+                    <span id="game-settings">⚙</span>
+                </div>
             </div>
             <div id="game-figure" class="game-section">0</div>
             <div id="game-giveup" class="game-section game-option">Give up</div>
