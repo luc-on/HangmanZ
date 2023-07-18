@@ -3,9 +3,6 @@ body {
     background-color: rgb(2, 2, 78);
     font-family: "noto sans";
     color: white;
-    background-image: url(../images/city-skyline.png);
-    background-repeat: repeat-x;
-    background-position: center top;
 }
 
 .language-option {
@@ -40,7 +37,11 @@ body {
   100% { border-color: #28eeee; }
 }
 
-#main-welcome {
+#main-menu {
+    display: none;
+}
+
+.menu {
     background-color: rgb(200, 20, 100);
     color: white;
     font-family: "candara";
@@ -53,6 +54,35 @@ body {
     border-width: 3px;
     border-style: solid;
     animation: color-border 2s infinite linear;
+}
+
+#menu-mode {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.menu-mode-option {
+    cursor: pointer;
+}
+
+#menu-quick {
+    background-color: rgb(241, 65, 145);
+}
+
+#menu-start {
+    background-color: rgb(2, 2, 78);
+    border: white solid 1px;
+    cursor: pointer;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+#menu-start:hover {
+    background-color: rgb(7, 7, 107)
+}
+
+#menu-start:active {
+    background-color: rgb(2,2,78)
 }
 
 #main-welcome:hover {

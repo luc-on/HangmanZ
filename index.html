@@ -16,7 +16,14 @@
             <span id="language-fr" class="language-option">fr</span>
         </div>
         <div id="main-logo">HangmanZ</div>
-        <div id="main-welcome" onclick="startGame()">PLAY</div>
+        <div id="main-welcome" class="menu" onclick="selectGame()">PLAY</div>
+        <div id="main-menu" class="menu">
+            <div id="menu-mode">
+                <div id="menu-quick" class="menu-mode-option" onclick="chooseGameQuick()" >Quick game</div>
+                <div id="menu-custom" class="menu-mode-option" onclick="chooseGameCustom()">Custom game</div>
+            </div>
+            <div id="menu-start" onclick="startGame()">Start</div>
+        </div>
         <div id="main-game">
             <div id="game-header" class="game-section">
                 <div> <!-- Container made so that settings is on the right -->
