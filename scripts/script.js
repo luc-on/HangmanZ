@@ -1,25 +1,28 @@
 function selectGame() {
     /** Options before playing */
-    document.getElementById("main-language").style.cssText = "display: none";
     document.getElementById("main-logo").style.cssText = "display: none";
     document.getElementById("main-welcome").style.cssText = "display: none";
-    document.getElementById("main-menu").style.cssText = "display: grid";
+    document.getElementById("main-menu").style.cssText = "display: grid; margin-top: 10%";
 }
 
 function chooseGameQuick() {
     /** Highlights the "Quick game" option */
-    document.getElementById("menu-custom").style.cssText = "background-color: rgb(200, 20, 100)";
-    document.getElementById("menu-quick").style.cssText = "background-color: rgb(241, 65, 145)";
+    document.getElementById("menu-custom").style.cssText = "background-color: rgb(200, 20, 100); border: none";
+    document.getElementById("menu-quick").style.cssText = "background-color: rgb(241, 65, 145); border-bottom: solid 2px white";
+    document.getElementById("custom-options").style.cssText = "display: none";
+    
 }
 
 function chooseGameCustom() {
     /** Highlights the "Custom game" option */
-    document.getElementById("menu-quick").style.cssText = "background-color: rgb(200, 20, 100)";
-    document.getElementById("menu-custom").style.cssText = "background-color: rgb(241, 65, 145)";
+    document.getElementById("menu-quick").style.cssText = "background-color: rgb(200, 20, 100); border: none";
+    document.getElementById("menu-custom").style.cssText = "background-color: rgb(241, 65, 145); border-bottom: solid 2px white";
+    document.getElementById("custom-options").style.cssText = "display: block";
 }
 
 function startGame() {
     /** Prepares the game after clicking on "Start" */
+    document.getElementById("main-language").style.cssText = "display: none";
     document.getElementById("main-menu").style.cssText = "display: none";
     document.getElementById("main-game").style.cssText = "display: grid";
     document.getElementById("the-body").style.cssText = "background-image: url(../images/city-skyline.png); background-repeat: repeat-x; background-position: center top;";

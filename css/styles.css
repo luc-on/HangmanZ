@@ -67,14 +67,29 @@ body {
 
 #menu-quick {
     background-color: rgb(241, 65, 145);
+    border-bottom: solid 2px white;
 }
 
 #menu-start {
     background-color: rgb(2, 2, 78);
-    border: white solid 1px;
     cursor: pointer;
     margin-top: 10%;
     margin-bottom: 5%;
+    border-radius: 5px;
+}
+
+#custom-options {
+    display: none;
+    font-size: 24px;
+    margin-top: 5%;
+}
+
+.custom-option {
+    cursor: pointer;
+}
+
+.custom-option:hover {
+    background-color: rgb(241, 65, 145);
 }
 
 #menu-start:hover {

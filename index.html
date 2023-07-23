@@ -9,7 +9,7 @@
 </head>
 <body id="the-body">
     <header></header>
-    <main>
+    <main id="the-main">
         <div id="main-language">
             <span id="language-es" class="language-option">es</span>
             <span>|</span>
@@ -22,11 +22,18 @@
                 <div id="menu-quick" class="menu-mode-option" onclick="chooseGameQuick()" >Quick game</div>
                 <div id="menu-custom" class="menu-mode-option" onclick="chooseGameCustom()">Custom game</div>
             </div>
+            <div id="custom-options">
+                <div class="custom-option">Category</div>
+                <div class="custom-option">Time</div>
+                <div class="custom-option">Lives</div>
+                <div class="custom-option">Hints</div>
+                <div class="custom-option">Sound</div>
+            </div>
             <div id="menu-start" onclick="startGame()">Start</div>
         </div>
         <div id="main-game">
             <div id="game-header" class="game-section">
-                <div> <!-- Container made so that settings is on the right -->
+                <div> <!-- Div container created so that "game-settings" is on the right -->
                     <span>Level</span>
                     <span id="game-level" class="game-parameter">1</span>
                     <span>Lives</span>
