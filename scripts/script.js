@@ -3,6 +3,7 @@ function selectGame() {
     document.getElementById("main-logo").style.cssText = "display: none";
     document.getElementById("main-welcome").style.cssText = "display: none";
     document.getElementById("main-menu").style.cssText = "display: grid; margin-top: 10%";
+    document.getElementById("main-lost").style.cssText = "display: none";
 }
 
 function chooseGameQuick() {
@@ -48,6 +49,10 @@ function getInput() {
     wrongs = []; // List of incorrect guesses
     document.getElementById("game-wrongs").innerHTML = ""; // Resets list of incorrect guesses
 
+    if (document.getElementById("game-lives").innerHTML == 0){
+        gameLost();
+    } // In case one loses all of their lives by giving up
+
     document.addEventListener('keydown', mainProcess, false);
     document.getElementById("game-giveup").addEventListener("click", gameOver)
 }
@@ -56,8 +61,11 @@ function mainProcess() {
     /** Records key stroke, verifies if it's a correct guess */
     var name = event.key.toString().toLowerCase();
     var abc = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    // If no lives left
+    if (document.getElementById("game-lives").innerHTML == 0){
+        gameLost();
     // Making a correct guess
-    if (word_to_guess.includes(name)) {
+    } else if (word_to_guess.includes(name)) {
         for (i = 0; i<word_to_guess.length; i++) {
             if (word_to_guess[i] == name) { // Guessing a letter
                 raw_answer[i] = name;
@@ -75,6 +83,7 @@ function mainProcess() {
         wrongs.push(name);
         addMistake(wrongs);
         score.innerHTML++;
+        // Losing the game
         if (score.innerHTML == 7) {
             gameOver();
         };
@@ -105,13 +114,23 @@ function displayAnswer(word) {
 }
 
 function gameOver() {
-    /** Reveals correct answer, gives option of playing again */
+    /** Reveals correct answer, gives option of playing again, player loses one life*/
     document.getElementById("game-hint").style.cssText = "display: none";
     document.getElementById("game-giveup").style.cssText = "display: none";
     document.getElementById("game-replay").style.cssText = "display: block";
     document.getElementById("game-header-status").innerHTML = `Game over. The answer was ${word_to_guess}`;
+    document.getElementById("game-lives").innerHTML--;
     document.getElementById("game-figure").innerHTML = "x";
+    
     // Resetting the event listener for key strokes
     document.removeEventListener('keydown', mainProcess);
     document.getElementById("game-replay").addEventListener("click", getInput);
 };
+
+function gameLost() {
+    document.removeEventListener('keydown', mainProcess);
+    document.getElementById("game-lives").innerHTML = 3;
+    document.getElementById("main-game").style.cssText = "display: none";
+    document.getElementById("main-lost").style.cssText = "display: block";
+    document.getElementById("main-welcome").style.cssText = "display: block";   
+}
