@@ -43,8 +43,8 @@ function getInput() {
     displayAnswer(raw_answer);
 
     // Setting up the score
-    score = document.getElementById("game-figure");
-    score.innerHTML = 0;
+    score = 0;
+    figureUpdater(score);
     
     wrongs = []; // List of incorrect guesses
     document.getElementById("game-wrongs").innerHTML = ""; // Resets list of incorrect guesses
@@ -82,9 +82,10 @@ function mainProcess() {
     } else if (abc.includes(name) && !(wrongs.includes(name))) {
         wrongs.push(name);
         addMistake(wrongs);
-        score.innerHTML++;
+        score++;
+        figureUpdater(score);
         // Losing the game
-        if (score.innerHTML == 7) {
+        if (score == 6) {
             gameOver();
         };
     // Reusing letters
@@ -94,6 +95,38 @@ function mainProcess() {
     } else {
         document.getElementById("game-header-status").innerHTML = "Only letters, please!"
     }    
+}
+
+function figureUpdater(number) {
+    let figure = document.getElementById("game-figure")
+    switch (number) {
+        case 0:
+            document.getElementById("game-figure-head").style.cssText = "background-color: black; color: black;";
+            document.getElementById("game-figure-torso").style.cssText = "background-color: black; color: black;";
+            document.getElementById("game-figure-leftarm").style.cssText = "background-color: black; color: black;";
+            document.getElementById("game-figure-rightarm").style.cssText = "background-color: black; color: black;";
+            document.getElementById("game-figure-leftleg").style.cssText = "background-color: black; color: black;";
+            document.getElementById("game-figure-rightleg").style.cssText = "background-color: black; color: black;";
+            break;
+        case 1:
+            document.getElementById("game-figure-head").style.cssText = "background-color: white; color: white;";
+            break;
+        case 2:
+            document.getElementById("game-figure-torso").style.cssText = "background-color: white; color: white;";
+            break;
+        case 3:
+            document.getElementById("game-figure-leftarm").style.cssText = "background-color: white; color: white;";
+            break;
+        case 4:
+            document.getElementById("game-figure-rightarm").style.cssText = "background-color: white; color: white;";
+            break;
+        case 5:
+            document.getElementById("game-figure-leftleg").style.cssText = "background-color: white; color: white;";
+            break;
+        case 6:
+            document.getElementById("game-figure-rightleg").style.cssText = "background-color: white; color: white;";
+            break;
+    }
 }
 
 function addMistake(list) {
@@ -119,8 +152,10 @@ function gameOver() {
     document.getElementById("game-giveup").style.cssText = "display: none";
     document.getElementById("game-replay").style.cssText = "display: block";
     document.getElementById("game-header-status").innerHTML = `Game over. The answer was ${word_to_guess}`;
-    document.getElementById("game-lives").innerHTML--;
-    document.getElementById("game-figure").innerHTML = "x";
+    if (score == 6) {
+        document.getElementById("game-lives").innerHTML--;
+    }
+    score = 0;
     
     // Resetting the event listener for key strokes
     document.removeEventListener('keydown', mainProcess);
