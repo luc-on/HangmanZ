@@ -4,6 +4,8 @@ function selectGame() {
     document.getElementById("main-welcome").style.cssText = "display: none";
     document.getElementById("main-menu").style.cssText = "display: grid; margin-top: 10%";
     document.getElementById("main-lost").style.cssText = "display: none";
+    document.getElementById("main-game").style.cssText = "display: none";
+    document.getElementById("game-back").style.cssText = "display: none";
 }
 
 function chooseGameQuick() {
@@ -151,8 +153,9 @@ function gameOver() {
     document.getElementById("game-hint").style.cssText = "display: none";
     document.getElementById("game-giveup").style.cssText = "display: none";
     document.getElementById("game-replay").style.cssText = "display: block";
-    document.getElementById("game-header-status").innerHTML = `Game over. The answer was ${word_to_guess}`;
-    if (score == 6) {
+    document.getElementById("game-back").style.cssText = "display: block";
+    document.getElementById("game-header-status").innerHTML = `Game over. The answer was "${word_to_guess}"`;
+    if (score != 0) {
         document.getElementById("game-lives").innerHTML--;
     }
     score = 0;
@@ -160,6 +163,7 @@ function gameOver() {
     // Resetting the event listener for key strokes
     document.removeEventListener('keydown', mainProcess);
     document.getElementById("game-replay").addEventListener("click", getInput);
+    document.getElementById("game-back").addEventListener("click", selectGame);
 };
 
 function gameLost() {
