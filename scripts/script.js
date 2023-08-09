@@ -37,6 +37,7 @@ function getInput() {
     document.getElementById("game-hint").style.cssText = "display: block";
     document.getElementById("game-giveup").style.cssText = "display: block";
     document.getElementById("game-replay").style.cssText = "display: none";
+    document.getElementById("game-back").style.cssText = "display: none";
 
     // Generating word to guess
     document.getElementById("game-header-status").innerHTML = "";
@@ -57,6 +58,7 @@ function getInput() {
 
     document.addEventListener('keydown', mainProcess, false);
     document.getElementById("game-giveup").addEventListener("click", gameOver)
+    document.getElementById("game-hint").addEventListener("click", hint)
 }
 
 function mainProcess() {
@@ -172,4 +174,32 @@ function gameLost() {
     document.getElementById("main-game").style.cssText = "display: none";
     document.getElementById("main-lost").style.cssText = "display: block";
     document.getElementById("main-welcome").style.cssText = "display: block";   
+}
+
+function hint() {
+    //* Gives a hint to the player by revealing the first letter*/
+    let hint_index = randomNumber(0,word_to_guess.length-1);
+    // Making sure that the hint is valid and doesn't coincide with an already-guessed letter
+    while (raw_answer[hint_index] != "_") {
+        hint_index = randomNumber(0,word_to_guess.length-1)
+    }
+    // After a letter is revealed, if the word to guess has more occurences of such letter, then those will also be shown
+    for (i=0; i<word_to_guess.length; i++) {
+        if (word_to_guess[i]==word_to_guess[hint_index]) {
+            raw_answer[i] = word_to_guess[hint_index];
+        }
+    }
+    displayAnswer(raw_answer);
+    document.getElementById("game-points").innerHTML--; // Subtracting one point every time the "hint" button is used
+    // If hint makes you win the game
+    if (raw_answer.join("") == word_to_guess) {
+        document.getElementById("game-points").innerHTML ++;
+        gameOver();
+        document.getElementById("game-header-status").innerHTML = "You won!";
+    };
+}
+
+function randomNumber(min, max) {
+    //* Auxiliary function to generate a random number in between min and max (inclusive) */
+    return Math.floor(Math.random() * (max-min+1))+min;
 }
