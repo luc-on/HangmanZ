@@ -11,7 +11,7 @@ function selectGame() {
 function chooseGameQuick() {
     /** Highlights the "Quick game" option */
     document.getElementById("menu-custom").style.cssText = "background-color: rgb(200, 20, 100); border: none";
-    document.getElementById("menu-quick").style.cssText = "background-color: rgb(241, 65, 145); border-bottom: solid 2px white";
+    document.getElementById("menu-quick").style.cssText = "background-color: rgb(241, 65, 145); border-radius: 5px;";
     document.getElementById("custom-options").style.cssText = "display: none";
     
 }
@@ -19,7 +19,7 @@ function chooseGameQuick() {
 function chooseGameCustom() {
     /** Highlights the "Custom game" option */
     document.getElementById("menu-quick").style.cssText = "background-color: rgb(200, 20, 100); border: none";
-    document.getElementById("menu-custom").style.cssText = "background-color: rgb(241, 65, 145); border-bottom: solid 2px white";
+    document.getElementById("menu-custom").style.cssText = "background-color: rgb(241, 65, 145); border-radius: 5px;";
     document.getElementById("custom-options").style.cssText = "display: block";
 }
 
@@ -40,7 +40,7 @@ function getInput() {
     document.getElementById("game-back").style.cssText = "display: none";
 
     // Generating word to guess
-    document.getElementById("game-header-status").innerHTML = "";
+    document.getElementById("game-info-status").innerHTML = "";
     word_to_guess = wordGenerator();
     raw_answer = Array(word_to_guess.length).fill("_");
     displayAnswer(raw_answer);
@@ -49,8 +49,12 @@ function getInput() {
     score = 0;
     figureUpdater(score);
     
+    // Resetting info
     wrongs = []; // List of incorrect guesses
-    document.getElementById("game-wrongs").innerHTML = ""; // Resets list of incorrect guesses
+    document.getElementById("game-info-wrongs-list").innerHTML = "";
+    document.getElementById("game-info-wrongs-message").innerHTML = "Wrong guesses: ";
+    document.getElementById("game-info-attempts-amount").innerHTML = "6";
+    document.getElementById("game-info-hints-amount").innerHTML = "0";
 
     if (document.getElementById("game-lives").innerHTML == 0){
         gameLost();
@@ -80,13 +84,15 @@ function mainProcess() {
         if (raw_answer.join("") == word_to_guess) {
             document.getElementById("game-points").innerHTML ++;
             gameOver();
-            document.getElementById("game-header-status").innerHTML = "You won!";
+            document.getElementById("game-info-status").innerHTML = "You won!";
         }
     // Making an incorrect guess    
     } else if (abc.includes(name) && !(wrongs.includes(name))) {
         wrongs.push(name);
         addMistake(wrongs);
         score++;
+        document.getElementById("game-info-wrongs-message").innerHTML = `Wrong guesses: ${wrongs.length}`
+        document.getElementById("game-info-attempts-amount").innerHTML = `${6-score}`
         figureUpdater(score);
         // Losing the game
         if (score == 6) {
@@ -94,10 +100,10 @@ function mainProcess() {
         };
     // Reusing letters
     } else if (wrongs.includes(name)) {
-        document.getElementById("game-header-status").innerHTML = "Try another letter!"
+        document.getElementById("game-info-status").innerHTML = "Try another letter!"
     // Invalid input
     } else {
-        document.getElementById("game-header-status").innerHTML = "Only letters, please!"
+        document.getElementById("game-info-status").innerHTML = "Only letters, please!"
     }    
 }
 
@@ -135,7 +141,7 @@ function figureUpdater(number) {
 
 function addMistake(list) {
     /** Adds incorrect guesses into a list */
-    document.getElementById("game-wrongs").innerHTML = list.join();
+    document.getElementById("game-info-wrongs-list").innerHTML = list.join();
 };
 
 function wordGenerator() {
@@ -156,10 +162,12 @@ function gameOver() {
     document.getElementById("game-giveup").style.cssText = "display: none";
     document.getElementById("game-replay").style.cssText = "display: block";
     document.getElementById("game-back").style.cssText = "display: block";
-    document.getElementById("game-header-status").innerHTML = `Game over. The answer was "${word_to_guess}"`;
-    if (score != 0) {
+    document.getElementById("game-info-status").innerHTML = `Game over. The answer was "${word_to_guess}"`;
+    // So that the player can give up and not lose any life if no guesses were made (and no hints were given!)
+    if (score != 0 || document.getElementById("game-info-hints-amount").innerHTML != "0") {
         document.getElementById("game-lives").innerHTML--;
     }
+
     score = 0;
     
     // Resetting the event listener for key strokes
@@ -191,11 +199,12 @@ function hint() {
     }
     displayAnswer(raw_answer);
     document.getElementById("game-points").innerHTML--; // Subtracting one point every time the "hint" button is used
+    document.getElementById("game-info-hints-amount").innerHTML++;
     // If hint makes you win the game
     if (raw_answer.join("") == word_to_guess) {
         document.getElementById("game-points").innerHTML ++;
         gameOver();
-        document.getElementById("game-header-status").innerHTML = "You won!";
+        document.getElementById("game-info-status").innerHTML = "You won!";
     };
 }
 
