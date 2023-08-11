@@ -89,10 +89,82 @@ body {
 
 .custom-option {
     cursor: pointer;
+    display: grid;
+    grid-template-columns: 10% 1fr 40%;
+    grid-template-rows: auto;
+    margin-top: 5px;
+}
+
+.custom-option-text {
+    text-align: left;
+    grid-column: 2 / 3;
+}
+
+.custom-option-menu {
+    grid-column: 3 / 4;
 }
 
 .custom-option:hover {
     background-color: rgb(241, 65, 145);
+}
+
+.button1 {
+    font-weight: bold;
+    color: rgb(2,2,78);
+}
+
+.button1:hover {
+    text-shadow: 0px 0px 3px white;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 28px;
+    margin: 0 auto;
+  }
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(200,200,200);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: rgb(2, 2, 78);
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
 }
 
 #menu-start:hover {

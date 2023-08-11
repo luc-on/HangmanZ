@@ -2,7 +2,7 @@ function selectGame() {
     /** Options before playing */
     document.getElementById("main-logo").style.cssText = "display: none";
     document.getElementById("main-welcome").style.cssText = "display: none";
-    document.getElementById("main-menu").style.cssText = "display: grid; margin-top: 10%";
+    document.getElementById("main-menu").style.cssText = "display: grid; margin-top: 5%";
     document.getElementById("main-lost").style.cssText = "display: none";
     document.getElementById("main-game").style.cssText = "display: none";
     document.getElementById("game-back").style.cssText = "display: none";
@@ -164,12 +164,19 @@ function gameOver() {
     document.getElementById("game-back").style.cssText = "display: block";
     document.getElementById("game-info-status").innerHTML = `Game over. The answer was "${word_to_guess}"`;
     
-    // Losing one life if one of these conditions is met
+    // Losing one life if certain conditions are met
+    
     condition1 = score!=0
     // So that the player can give up and not lose any lives if no guesses were made (and no hints were given!)
     condition2 = document.getElementById("game-info-hints-amount").innerHTML != "0" 
     condition3 = raw_answer.join("") != word_to_guess
-    if ((condition1 && condition3) || ((!condition1)&&condition2)) {
+
+    // Lose a life if attempts were made, and final answer is still not equal to the original word
+    condition4 = condition1 && condition3
+    // Lose a life if no attempts were made, but hints were given
+    condition5 = (!condition1)&&condition2
+
+    if (condition4||condition5) {
         document.getElementById("game-lives").innerHTML--;
     }
 
@@ -216,4 +223,26 @@ function hint() {
 function randomNumber(min, max) {
     //* Auxiliary function to generate a random number in between min and max (inclusive) */
     return Math.floor(Math.random() * (max-min+1))+min;
+}
+
+function increaseLives() {
+    //* Increase starting amount of lives. Maximum of 10 */
+    if (document.getElementById("custom-option-lives-menu-number").innerHTML<10) {
+        document.getElementById("custom-option-lives-menu-number").innerHTML++;
+        document.getElementById("game-lives").innerHTML++;
+        document.getElementById("custom-option-lives-menu-less").style.cssText = "display: inline;";
+    } if (document.getElementById("custom-option-lives-menu-number").innerHTML>=10) {
+        document.getElementById("custom-option-lives-menu-more").style.cssText = "color: rgb(200,200,200)";
+    }
+}
+
+function decreaseLives() {
+    //* Decrease starting amount of lives. Minimum of 1 */
+    if (document.getElementById("custom-option-lives-menu-number").innerHTML>1) {
+        document.getElementById("custom-option-lives-menu-number").innerHTML--;
+        document.getElementById("game-lives").innerHTML--;
+        document.getElementById("custom-option-lives-menu-more").style.cssText = "display: inline;";
+    } if (document.getElementById("custom-option-lives-menu-number").innerHTML<=1) {
+        document.getElementById("custom-option-lives-menu-less").style.cssText = "color: rgb(200,200,200)";
+    }
 }

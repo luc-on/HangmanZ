@@ -26,11 +26,39 @@
                 <div id="menu-custom" class="menu-mode-option" onclick="chooseGameCustom()">Custom game</div>
             </div>
             <div id="custom-options">
-                <div class="custom-option">Category</div>
-                <div class="custom-option">Time</div>
-                <div class="custom-option">Lives</div>
-                <div class="custom-option">Hints</div>
-                <div class="custom-option">Sound</div>
+                <div id="custom-option-category" class="custom-option">
+                    <div id="custom-option-category-text" class="custom-option-text">Category</div>
+                    <div id="custom-option-category-menu" class="custom-option-menu">
+                        <span id="custom-option-category-menu-selected">Default</span>
+                        <span id="custom-option-category-menu-more">►</span>
+                    </div>
+                </div>
+                <div id="custom-option-time" class="custom-option">
+                    <div id="custom-option-time-text" class="custom-option-text">Time</div>
+                    <div id="custom-option-time-menu" class="custom-option-menu"></div>
+                </div>
+                <div id="custom-option-lives" class="custom-option">
+                    <div id="custom-option-lives-text" class="custom-option-text">Lives</div>
+                    <div id="custom-option-lives-menu" class="custom-option-menu">
+                        <span id="custom-option-lives-menu-less" class="button1" onclick="decreaseLives()">–</span>
+                        <span id="custom-option-lives-menu-number">3</span>
+                        <span id="custom-option-lives-menu-more" class="button1" onclick="increaseLives()">+</span>
+                    </div>
+                </div>
+                <div id="custom-option-hints" class="custom-option">
+                    <div id="custom-option-hints-text" class="custom-option-text">Hints</div>
+                    <label id="custom-option-hints-menu" class="custom-option-menu switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div id="custom-option-sound" class="custom-option">
+                    <div id="custom-option-sound-text" class="custom-option-text">Sound</div>
+                    <label id="custom-option-sound-menu" class="custom-option-menu switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
             </div>
             <div id="menu-start" onclick="startGame()">START</div>
         </div>
