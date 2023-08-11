@@ -157,14 +157,19 @@ function displayAnswer(word) {
 }
 
 function gameOver() {
-    /** Reveals correct answer, gives option of playing again, player loses one life*/
+    /** Reveals correct answer, gives option of playing again, player may lose a life*/
     document.getElementById("game-hint").style.cssText = "display: none";
     document.getElementById("game-giveup").style.cssText = "display: none";
     document.getElementById("game-replay").style.cssText = "display: block";
     document.getElementById("game-back").style.cssText = "display: block";
     document.getElementById("game-info-status").innerHTML = `Game over. The answer was "${word_to_guess}"`;
-    // So that the player can give up and not lose any life if no guesses were made (and no hints were given!)
-    if (score != 0 || document.getElementById("game-info-hints-amount").innerHTML != "0") {
+    
+    // Losing one life if one of these conditions is met
+    condition1 = score!=0
+    // So that the player can give up and not lose any lives if no guesses were made (and no hints were given!)
+    condition2 = document.getElementById("game-info-hints-amount").innerHTML != "0" 
+    condition3 = raw_answer.join("") != word_to_guess
+    if ((condition1 && condition3) || ((!condition1)&&condition2)) {
         document.getElementById("game-lives").innerHTML--;
     }
 
